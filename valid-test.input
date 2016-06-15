@@ -1,0 +1,21 @@
+var count;
+var value;
+count = 57;
+value = ( count + 4 );
+value =  (  count  + (value -count  )/ 3)   * 2;
+value=102+value;
+var wow;
+wow = (10+10*(12-2 )  )  +(7+3)*10+(  (   (0)));
+
+struct myStruct {
+    first = 1;
+    second = 12;
+};
+var a;
+a = 50;
+while(myStruct.first < myStruct.second){
+    for(var e; e != 16; e = e + 2;){
+        a = a - 7;
+    }
+    myStruct.first = myStruct.first + 1;
+}

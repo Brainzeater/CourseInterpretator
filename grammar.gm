@@ -1,0 +1,50 @@
+/*
+    statements reference
+    var count;
+    var value;
+    count = 5;
+    value = 100 + count;
+    value = value - count * 2;
+*/
+
+/*
+    NON_TERMINALS
+*/
+
+lang : (expr SM)+
+expr : declare | assign | whileOperation | structDeclare | forOperation
+declare : VAR_KW VAR_NAME
+assign : VAR ASSIGN_OP stmt
+whileOperation : WHILE_KW BRACKET_OPEN condition BRACKET_CLOSE C_BRACKET_OPEN cycleBody C_BRACKET_CLOSE
+stmt : stmt_unit (OP stmtUnit)*
+stmtUnit : DIGIT | VAR_NAME
+condition : (stmtUnit)
+ (MORE | LESS | MORE_EQUALS | LESS_EQUALS | EQUALS | NOT_EQUALS)
+cycleBody : (expr SM)+
+structDeclare : STRUCT_KW C_BRACKET_OPEN (assign)+ C_BRACKET_CLOSE
+forOperation : FOR_KW BRACKET_OPEN declare condition assign BRACKET_CLOSE forBody
+forBody : C_BRACKET_OPEN cycleBody C_BRACKET_CLOSE
+
+/*
+    TERMINALS
+*/
+
+SM : ';'
+VAR_KW : 'var'
+ASSIGN_OP : '='
+OP : '-' | '+' | '/' | '*'
+DIGIT : 0 | [1-9]{1}[0-9]+
+VAR_NAME : [a-zA-Z]+
+WHILE_KW : 'while'
+BRACKET_OPEN : '('
+BRACKET_CLOSE : ')'
+C_BRACKET_OPEN : '{'
+C_BRACKET_CLOSE : '}'
+MORE : '>'
+LESS : '<'
+MORE_EQUALS : '>='
+LESS_EQUALS : '<='
+EQUALS : '=='
+NOT_EQUALS : '!='
+STRUCT_KW : struct
+FOR_KW : for
